@@ -1,0 +1,20 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>{%block title%}Django dersleri{%endblock%}</title>
+</head>
+<body>
+    
+    {% include 'messages.html' %}
+
+    <img src="{% static '/images/banner-bg.png' %}">
+
+    {%block body%}
+
+    {% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+</head>
+<body>
+    <a href="/test"><i aria-hidden="true"></i>  Test</a>   <a href="/"><i aria-hidden="true"></i>  Exchange</a><br><br>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <input type="text" name='num1'>
+        <input type="text" name='num2'>
+        <button name="operation" value="multiply"> * </button>
+        <button name="operation" value="divide"> / </button>
+        <button name="operation" value="add"> + </button>
+        <button name="operation" value="subtract"> - </button>
+    </form><br>
+    {{ result }}
+</body>
+</html>

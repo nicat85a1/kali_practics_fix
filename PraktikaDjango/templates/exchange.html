@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exchange</title>
+</head>
+<body>
+    <a href="/test"><i aria-hidden="true"></i>  Test</a>   <a href="/calculator"><i aria-hidden="true"></i>  Calculator</a><br><br>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <select id="money1" name="money1">
+            <option value="dollar">dollar</option>
+            <option value="manat">manat</option>
+            <option value="euro">euro</option>
+        </select>
+        <select id="money2" name="money2">
+            <option value="dollar">dollar</option>
+            <option value="manat">manat</option>
+            <option value="euro">euro</option>
+        </select>
+        <input type="text" name='ei'>
+        <button>Exchange</button>
+    </form><br>
+    {{ exchange }} {{ money2 }}
+    {{ error }}
+</body>
+</html>

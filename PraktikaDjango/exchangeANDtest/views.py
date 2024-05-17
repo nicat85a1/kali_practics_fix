@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-def exchange(request):
+"""def exchange(request):
     exchange_usd = 1.7
     exchange_euro = 1.83
     exchange_u_e = 0.93
@@ -38,9 +38,46 @@ def exchange(request):
                 }
         return render(request, "exchange.html", context)
         
+    return render(request, "exchange.html")"""
+
+
+import requests
+
+def get_exchange_rate(from_currency, to_currency):
+
+    url = f"https://v6.exchangerate-api.com/v6/80c34514425aa133d57e39f7/latest/{from_currency}"
+    response = requests.get(url)
+    data = response.json()
+
+    rate = data['conversion_rates'][to_currency]
+    
+    return rate
+
+def exchange(request):
+    if request.method == "POST":
+        money1 = request.POST.get('money1')
+        money2 = request.POST.get('money2')
+        exchange_input = request.POST.get('ei')
+
+        if not exchange_input:
+            return render(request, "exchange.html", {'error': 'Please fill in all fields.'})
+
+        try:
+            exchange_input = float(exchange_input)
+        except ValueError:
+            return render(request, "exchange.html", {'error': 'Please enter valid numbers.'})
+
+        exchange_rate = get_exchange_rate(money1, money2)
+
+        exchange = exchange_input * exchange_rate
+
+        context = {
+            'exchange': exchange,
+            'money2': money2
+                }
+        return render(request, "exchange.html", context)
+        
     return render(request, "exchange.html")
-
-
 
 answers = ['1', '1', '1', '3', '2', '2', '3', '2', '1', '3']
 score_input = 'Dogru Cavab'
